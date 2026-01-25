@@ -5,7 +5,7 @@
  * in the standby state and during kick-ins. A robot only tries to look at
  * the referee if it stands inside a ring segment surrounding the referee
  * position, when a state starts that requires detecting a referee signal.
- * The detection stops when any robot on the team detects an expected
+ * The detection stops when any robot on the team detects an expeced
  * referee signal, a timeout is reached, or the state ends. In case of a
  * kick-in, the robot will turn in the direction of the referee if just
  * turning the head is not sufficient.
@@ -20,13 +20,13 @@
  * in the right place.
  */
 option((SkillBehaviorControl) HandleRefereeSignal,
-       defs((float)(2400.f) upperImageBorderAtHeight, /**< The height to look at (in mm). */
-            (float)(2600.f) upperImageBorderAtHeightStandby, /**< The height to look at in standby (in mm). */
+       defs((float)(2500.f) upperImageBorderAtHeight, /**< The height to look at (in mm). */
+            (float)(2000.f) upperImageBorderAtHeightStandby, /**< The height to look at in standby (in mm). */
             (float)(515.f) assumedCameraHeight, /**< The assumed height of the camera above ground (in mm). */
-            (Rangef)({2000.f, 6000.f}) distanceRange, /**< The distance range for this option to become active during kick-in. */
-            (Rangea)({60_deg, 120_deg}) bearingRange, /**< The bearing range to the referee for this option to become active. */
-            (int)(6000) kickInWaitTime, /**< How long to unsuccessfully look at referee during kick-in. */
-            (Angle)(45_deg) maxHeadTurn, /**< Maximum head rotation before the body has to be turned. */
+            (Rangef)({1500.f, 8000.f}) distanceRange, /**< The distance range for this option to become active during kick-in. */
+            (Rangea)({15_deg, 165_deg}) bearingRange, /**< The bearing range to the referee for this option to become active. */
+            (int)(12000) kickInWaitTime, /**< How long to unsuccessfully look at referee during kick-in. */
+            (Angle)(60_deg) maxHeadTurn, /**< Maximum head rotation before the body has to be turned. */
             (Angle)(2_deg) turnTolerance)) /**< Accepted tolerance when reaching the required body rotation. */
 {
   const Vector2f refereeOnField(theFieldDimensions.xPosHalfwayLine,
