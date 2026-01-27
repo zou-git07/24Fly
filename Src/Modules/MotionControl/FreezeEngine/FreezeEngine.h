@@ -12,6 +12,7 @@
 #include "Representations/Infrastructure/JointAngles.h"
 #include "Representations/Infrastructure/JointRequest.h"
 #include "Representations/Infrastructure/FrameInfo.h"
+#include "Representations/Infrastructure/GameState.h"
 #include "Representations/MotionControl/FallGenerator.h"
 #include "Representations/MotionControl/FreezeGenerator.h"
 #include "Representations/Infrastructure/RobotHealth.h"
@@ -22,6 +23,7 @@ MODULE(FreezeEngine,
 {,
   REQUIRES(FallGenerator),
   REQUIRES(FrameInfo),
+  REQUIRES(GameState),
   REQUIRES(InertialData),
   REQUIRES(JointAngles),
   USES(JointRequest),

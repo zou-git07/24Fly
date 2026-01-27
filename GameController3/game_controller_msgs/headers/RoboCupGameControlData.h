@@ -33,6 +33,7 @@
 #define GAME_PHASE_PENALTYSHOOT 1
 #define GAME_PHASE_OVERTIME     2
 #define GAME_PHASE_TIMEOUT      3
+#define GAME_PHASE_PAUSED       4  // System-level pause (freeze)
 
 #define STATE_INITIAL  0
 #define STATE_READY    1

@@ -47,6 +47,11 @@ void FreezePhase::update()
 
 bool FreezePhase::isDone(const MotionRequest&) const
 {
+  // If game is paused, stay frozen (don't exit)
+  if(engine.theGameState.paused)
+    return false;
+  
+  // Original body disconnect logic
   return engine.theMotionRobotHealth.frameLostStatus != MotionRobotHealth::bodyDisconnect && (engine.theFrameInfo.getTimeSince(reconnectTime) > engine.freezeTime || startFallMotion);
 }
 

@@ -48,8 +48,10 @@ export const START_KICK_OFF_AWAY = 13;
 export const ADD_EXTRA_TIME = 14;
 export const REFEREE_TIMEOUT = 15;
 export const GLOBAL_GAME_STUCK = 16;
+export const PAUSE = 17;
+export const RESUME = 18;
 
-const NUM_OF_GAME_ACTIONS = 17;
+const NUM_OF_GAME_ACTIONS = 19;
 
 const PENALTY_ACTION_BASE = GAME_ACTION_BASE + NUM_OF_GAME_ACTIONS;
 
@@ -95,6 +97,8 @@ export const getActions = () => {
   actions.push({ type: "addExtraTime", args: null });
   actions.push({ type: "timeout", args: { side: null } });
   actions.push({ type: "globalGameStuck", args: null });
+  actions.push({ type: "pause", args: null });
+  actions.push({ type: "resume", args: null });
   for (const penalty of PENALTIES) {
     for (const side of ["home", "away"]) {
       for (let number = 1; number <= NUM_OF_PLAYERS; ++number) {

@@ -126,7 +126,7 @@ void GameStateProvider::update(GameState& gameState)
           // - in case a set play is sent, it is true information.
           gameStateOverridden = false;
           minWhistleTimestamp = std::max(gameState.timeWhenStateStarted, theFrameInfo.time - acceptPastWhistleDelay);
-          gameState.state = convertGameControllerDataToState(theGameControllerData);
+          gameState.state = convertGameControllerDataToState(theGameControllerData, gameState);
           gameState.timeWhenStateStarted = timeWhenStateStartedBeforeWhistle; // TODO: We could be in a completely different state now than we were when we started guessing.
           gameState.timeWhenStateEnds = 0; // TODO: We could be in a state that requires this to be != 0.
         }
@@ -145,13 +145,13 @@ void GameStateProvider::update(GameState& gameState)
         {
           gameStateOverridden = false;
           minWhistleTimestamp = theFrameInfo.time;
-          gameState.state = convertGameControllerDataToState(theGameControllerData);
+          gameState.state = convertGameControllerDataToState(theGameControllerData, gameState);
           gameState.timeWhenStateStarted = timeWhenStateStartedBeforeWhistle;
           gameState.timeWhenStateEnds = 0;
         }
 
         // A guessed PLAYING state is reverted if a player has been penalized for illegalPosition or the ball returned to a legal position.
-        auto gameControllerState = convertGameControllerDataToState(theGameControllerData);
+        auto gameControllerState = convertGameControllerDataToState(theGameControllerData, gameState);
         if(GameState::isFreeKick(gameControllerState) &&
            ((*std::max_element(illegalPositionTimestampsOwnTeam.begin(), illegalPositionTimestampsOwnTeam.end()) > gameState.timeWhenStateStarted &&
              GameState::isForOpponentTeam(gameControllerState)) ||
@@ -307,6 +307,9 @@ void GameStateProvider::update(GameState& gameState)
 
   if(useGameControllerData)
   {
+    // Check for system-level pause
+    gameState.paused = (theGameControllerData.gamePhase == GAME_PHASE_PAUSED);
+    
     gameState.competitionPhase = static_cast<GameState::CompetitionPhase>(theGameControllerData.competitionPhase);
 
     // The index of the own team within theGameControllerData.
@@ -320,7 +323,7 @@ void GameStateProvider::update(GameState& gameState)
     // See below for timeWhenPhaseEnds.
     gameState.phase = convertGameControllerDataToPhase(theGameControllerData);
 
-    const auto gameControllerState = convertGameControllerDataToState(theGameControllerData);
+    const auto gameControllerState = convertGameControllerDataToState(theGameControllerData, gameState);
     // When the guessed state and the state from the GameController match, we can trust the GameController again.
     gameStateOverridden &= gameState.state != gameControllerState;
     // States other than SET, PLAYING or STANDBY are always true.
@@ -902,12 +905,21 @@ GameState::Phase GameStateProvider::convertGameControllerDataToPhase(const GameC
           GameState::secondHalf);
 }
 
-GameState::State GameStateProvider::convertGameControllerDataToState(const GameControllerData& gameControllerData)
+GameState::State GameStateProvider::convertGameControllerDataToState(const GameControllerData& gameControllerData, const GameState& currentState)
 {
   const bool isKickingTeamValid = gameControllerData.kickingTeam != KICKING_TEAM_NONE;
   if(isKickingTeamValid)
     isKickingTeam = gameControllerData.kickingTeam == Global::getSettings().teamNumber;
-  if(gameControllerData.gamePhase == GAME_PHASE_TIMEOUT)
+  
+  // Check for system-level pause first
+  if(gameControllerData.gamePhase == GAME_PHASE_PAUSED)
+  {
+    // When paused, keep the current state - don't change it
+    // The paused flag will be set separately
+    // Return the current state to maintain it
+    return currentState.state;
+  }
+  else if(gameControllerData.gamePhase == GAME_PHASE_TIMEOUT)
   {
     ASSERT(gameControllerData.state == STATE_INITIAL);
     ASSERT(gameControllerData.setPlay == SET_PLAY_NONE);
