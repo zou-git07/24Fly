@@ -5,6 +5,7 @@ import Index from "./components/Index";
 
 document.addEventListener("contextmenu", (event) => event.preventDefault());
 const container = document.createElement("div");
+container.id = "root";
 document.body.appendChild(container);
 const root = createRoot(container);
 

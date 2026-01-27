@@ -75,11 +75,11 @@ const Main = () => {
   ) {
     const mirror = game.sides === "homeDefendsRightGoal";
     return (
-      <div className="flex flex-col w-screen h-screen p-2 gap-4">
+      <div className="gc-container p-2 gap-4">
         <div
-          className={`grow h-[calc(100%-3.5rem)] flex ${
+          className={`flex-1 flex ${
             mirror ? "flex-row-reverse" : "flex-row"
-          } gap-4`}
+          } gap-4 min-h-0 overflow-hidden`}
         >
           <TeamPanel
             connectionStatus={connectionStatus}
@@ -118,11 +118,13 @@ const Main = () => {
             <></>
           )}
         </div>
-        <UndoPanel
-          params={params}
-          undoActions={undoActions}
-          legalUndoActions={extractUndoActions(legalActions)}
-        />
+        <div className="flex-shrink-0">
+          <UndoPanel
+            params={params}
+            undoActions={undoActions}
+            legalUndoActions={extractUndoActions(legalActions)}
+          />
+        </div>
       </div>
     );
   } else {

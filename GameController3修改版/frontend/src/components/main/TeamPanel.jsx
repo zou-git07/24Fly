@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import ActionButton from "./ActionButton";
 import PlayerButton from "./PlayerButton";
+import RobotStatusModal from "./RobotStatusModal";
 import * as actions from "../../actions.js";
 import { applyAction } from "../../api.js";
 
@@ -141,6 +142,8 @@ const TeamPanel = ({
   // is a field player (false) or a goalkeeper (true). If the substitute state is false, this
   // should always be null.
   const [substitutedPlayer, setSubstitutedPlayer] = useState(null);
+  // State for robot status modal
+  const [selectedRobotForStatus, setSelectedRobotForStatus] = useState(null);
 
   // Thus, the allowed combinations of substituted/substitutedPlayer are:
   // substitute === false && substitutedPlayer === null
@@ -226,13 +229,13 @@ const TeamPanel = ({
   };
 
   return (
-    <div className="min-w-80 flex flex-col gap-2">
+    <div className="gc-panel flex flex-col gap-2 flex-1 min-w-[280px] max-w-[400px] overflow-hidden">
       <TeamHeader
         color={teamParams.fieldPlayerColor}
         isKicking={game.kickingSide === side}
         name={teamNames[side]}
       />
-      <div className={`flex ${sign > 0 ? "flex-row" : "flex-row-reverse"} gap-2`}>
+      <div className={`flex ${sign > 0 ? "flex-row" : "flex-row-reverse"} gap-2 flex-shrink-0`}>
         <div className="flex-1 flex flex-col gap-2">
           <ActionButton
             action={() => {
@@ -258,7 +261,7 @@ const TeamPanel = ({
         </div>
         <TeamStats game={game} params={params} side={side} sign={sign} team={team} />
       </div>
-      <div className="grow flex flex-col gap-2 overflow-auto">
+      <div className="flex-1 flex flex-col gap-2 overflow-y-auto overflow-x-hidden min-h-0">
         {selectingPlayerTypePSO
           ? [true, false].map((isGoalkeeper) => (
               <PlayerButton
@@ -267,6 +270,7 @@ const TeamPanel = ({
                 legal={true}
                 sign={sign}
                 onClick={() => setSubstitutedPlayer(isGoalkeeper)}
+                onDoubleClick={null}
                 player={null}
               />
             ))
@@ -310,11 +314,25 @@ const TeamPanel = ({
                   }
                   sign={sign}
                   onClick={() => handlePlayerClick(player)}
+                  onDoubleClick={(player) => setSelectedRobotForStatus(player)}
                   player={player}
                 />
               ))}
       </div>
-      <FreeKickButtons game={game} legalTeamActions={legalTeamActions} side={side} sign={sign} />
+      <div className="flex-shrink-0">
+        <FreeKickButtons game={game} legalTeamActions={legalTeamActions} side={side} sign={sign} />
+      </div>
+      
+      {/* Robot Status Modal */}
+      {selectedRobotForStatus && (
+        <RobotStatusModal
+          player={selectedRobotForStatus}
+          side={side}
+          teamParams={teamParams}
+          teamName={teamNames[side]}
+          onClose={() => setSelectedRobotForStatus(null)}
+        />
+      )}
     </div>
   );
 };

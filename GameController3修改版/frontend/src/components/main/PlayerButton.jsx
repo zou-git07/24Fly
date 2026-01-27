@@ -42,7 +42,7 @@ const ConnectionStatusIndicatorIcon = ({ connectionStatus }) => {
   return <XMarkIcon className="w-6 h-6 text-red-600" />;
 };
 
-const PlayerButton = ({ color, legal, sign, onClick, player }) => {
+const PlayerButton = ({ color, legal, sign, onClick, onDoubleClick, player }) => {
   const shouldFlash =
     player &&
     player.penalty != "noPenalty" &&
@@ -52,6 +52,20 @@ const PlayerButton = ({ color, legal, sign, onClick, player }) => {
       ? player.penaltyTimer.started.remaining[0] < 10
       : player.penalty != "pickedUp");
 
+  const handleDoubleClick = (e) => {
+    e.stopPropagation();
+    console.log("🎯 Robot double clicked!", {
+      color: color,
+      playerNumber: player ? player.number : "N/A",
+      penalty: player ? player.penalty : "N/A"
+    });
+    alert(`Double click detected! Robot #${player ? player.number : "?"} (${color})`);
+    
+    if (onDoubleClick && player) {
+      onDoubleClick(player);
+    }
+  };
+
   return (
     <button
       className={`grow rounded-md border border-gray-600 ${bgClasses[color]} ${
@@ -59,6 +73,7 @@ const PlayerButton = ({ color, legal, sign, onClick, player }) => {
       } ${legal ? "" : "text-gray-500"}`}
       disabled={!legal}
       onClick={onClick}
+      onDoubleClick={handleDoubleClick}
     >
       <div className={`flex ${sign > 0 ? "flex-row" : "flex-row-reverse"} items-center gap-4 px-4`}>
         <div className="grow flex flex-col">

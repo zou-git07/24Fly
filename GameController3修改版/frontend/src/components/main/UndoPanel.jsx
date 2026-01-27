@@ -61,7 +61,7 @@ const getActionName = (params, action) => {
 
 const UndoPanel = ({ params, undoActions, legalUndoActions }) => {
   return (
-    <div className="flex flex-row-reverse gap-2 h-10">
+    <div className="flex flex-row-reverse gap-2 h-10 flex-wrap">
       {legalUndoActions.map((legal, index) => (
         <ActionButton
           action={{ type: "undo", args: { states: index + 1 } }}

@@ -22,6 +22,7 @@
 #include "Math/Constants.h"
 #include "Platform/File.h"
 #include "Platform/SystemCall.h"
+#include "Platform/Thread.h"
 #include "Streaming/FunctionList.h"
 
 static pid_t bhumanPid = 0;
@@ -248,7 +249,7 @@ int main(int argc, char* argv[])
   }
 
   while(run)
-    pause();
+    Thread::sleep(100);  // 替换 pause() 以保持线程运行，确保心跳包正常发送
 
   bhumanStop();
 

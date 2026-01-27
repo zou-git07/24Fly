@@ -23,6 +23,7 @@
 #include "Math/Constants.h"
 #include "Platform/File.h"
 #include "Platform/SystemCall.h"
+#include "Platform/Thread.h"
 #include "RobotParts/Joints.h"
 #include "Streaming/FunctionList.h"
 #include "Streaming/InStreams.h"
@@ -392,7 +393,7 @@ int main(int argc, char* argv[])
   }
 
   while(run)
-    pause();
+    Thread::sleep(100);  // 替换 pause() 以保持线程运行，确保心跳包正常发送
 
   bhumanStop();
   sitDown(true);
