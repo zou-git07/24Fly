@@ -113,6 +113,9 @@ void MotionEngine::update(JointRequest& jointRequest)
     phase = theFallGenerator.createPhase();
   else if(phase->type != MotionPhase::freeze && theFreezeGenerator.shouldHandleBodyDisconnect(*phase))
     phase = Global::getSettings().robotType == Settings::RobotType::t1 ? std::make_unique<PlayDeadPhase>(*this) : theFreezeGenerator.createPhase();
+  // Check if the game is paused - transition to freeze to hold current pose without stepping
+  else if(theGameState.paused && phase->type != MotionPhase::freeze && phase->type != MotionPhase::playDead)
+    phase = theFreezeGenerator.createPhase();
 
   // 2.1 Check if the phase is done, i.e. a new phase has to be started.
   else if(phase->isDone(motionRequest) || (motionRequest.motion == MotionRequest::playDead && forcePlayDead && phase->type != MotionPhase::playDead))

@@ -49,6 +49,7 @@ impl GameController {
             state: State::Initial,
             set_play: SetPlay::NoSetPlay,
             kicking_side: Some(params.game.kick_off_side),
+            is_paused: false,
             primary_timer: Timer::Started {
                 remaining: params.competition.half_duration.try_into().unwrap(),
                 run_condition: RunCondition::MainTimer,
@@ -145,6 +146,12 @@ impl GameController {
     /// This function lets time progress. Timers are updated and expiration actions applied when
     /// necessary.
     pub fn seek(&mut self, mut dt: Duration) {
+        // If the game is paused, don't update timers - just update the current time
+        if self.game.is_paused {
+            self.time += dt;
+            return;
+        }
+        
         // We must split the time when timers expire in the meantime, because they can have actions
         // which must be applied at the right point in time.
         while !dt.is_zero() {

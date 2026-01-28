@@ -58,6 +58,13 @@ void SkillBehaviorControl::update(ActivationGraph&)
   DECLARE_DEBUG_DRAWING("option:Zweikampf:sidewardRange", "drawingOnField");
   DECLARE_DEBUG_DRAWING("option:Zweikampf:sideSteal", "drawingOnField");
 
+  // If the game is paused, freeze all robot behavior
+  if(theGameState.paused)
+  {
+    // Don't update motion requests - robot stays frozen in current pose
+    return;
+  }
+
   theBehaviorStatus.calibrationFinished = false;
   theBehaviorStatus.passTarget = -1;
   theBehaviorStatus.passOrigin = -1;

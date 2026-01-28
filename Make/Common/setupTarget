@@ -3,7 +3,7 @@
 # on an IP address. In addition, "TARGET_MODEL" is set for Booster robots.
 
 _BASEPATH=$(cd "$(dirname "$(which "$0")")" && pwd)
-_NAME=$(cd "$_BASEPATH/../../Config/Robots"; grep "$1" */network.cfg | sed 's%/.*%%')
+_NAME=$(cd "$_BASEPATH/../../Config/Robots"; grep "\"$1\"" */network.cfg | sed 's%/.*%%')
 _ROBOTTYPE=$(cd "$_BASEPATH/../../Config/Robots"; grep -E "\"$_NAME\"" robots.cfg | sed 's%.*robotType *= *\([^;]*\).*%\1%')
 case "$_ROBOTTYPE" in
   nao)

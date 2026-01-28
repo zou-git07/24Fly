@@ -130,7 +130,14 @@ Behavior::Behavior(const BallDropInModel& theBallDropInModel, const BallSearchPa
   {
     if(tactic == Tactic::none)
       continue;
-    InExprMapFile stream(std::string("Behavior/Tactics/") + TypeRegistry::getEnumName(tactic) + ".cfg", symbols, ~bit(InMap::missingAttribute));
+    
+    std::string tacticFileName;
+    if(tactic == Tactic::standby)
+      tacticFileName = "standby_positions";
+    else
+      tacticFileName = TypeRegistry::getEnumName(tactic);
+      
+    InExprMapFile stream(std::string("Behavior/Tactics/") + tacticFileName + ".cfg", symbols, ~bit(InMap::missingAttribute));
     ASSERT(stream.exists());
     stream >> tactics[tactic];
 #ifndef NDEBUG
@@ -252,6 +259,23 @@ SkillRequest Behavior::update(Strategy::Type strategy, Agent& self, std::vector<
   for(const Agent& otherAgent : agents)
     if(otherAgent.number != self.number)
       otherAgents.push_back(&otherAgent);
+
+  // Pre-assign positions during standby to avoid conflicts in ready state
+  if(theGameState.state == GameState::standby)
+  {
+    // Use standby tactic for deterministic positioning
+    self.proposedTactic = self.acceptedTactic = Tactic::standby;
+    
+    // Assign standby positions with maximum stability (force keep positions)
+    assignPositions(self.acceptedTactic, SetPlay::none, agents, true, self.proposedMirror, self.acceptedMirror);
+    
+    // Assign basic roles for standby
+    for(Agent& agent : agents)
+      agent.nextRole = agent.role = PositionRole::toRole(PositionRole::fromPosition(agent.position));
+    
+    // In standby, just stand at assigned position
+    return SkillRequest::Builder::stand();
+  }
 
   // Handle set plays.
   const bool isKickingTeam = theGameState.isForOwnTeam();
@@ -635,7 +659,7 @@ void Behavior::assignPositions(Tactic::Type tactic, SetPlay::Type setPlay, std::
       if(!p)
         continue;
       const bool mirror = positionIndex % 2;
-      // If multiple agents claim to have had the same position, only the one with the lowest number counts.
+      // Enhanced stability handling for standby state
       int theOneAndOnlyAgent = Settings::highestValidPlayerNumber + 1;
       if(!theGameState.isReady() && !theGameState.isSet())
         for(const Agent* agent : remainingAgents)
@@ -645,6 +669,23 @@ void Behavior::assignPositions(Tactic::Type tactic, SetPlay::Type setPlay, std::
             theOneAndOnlyAgent = agent->number;
             break;
           }
+      
+      // Special handling for standby state: use robot number for deterministic assignment
+      if(theGameState.state == GameState::standby && theOneAndOnlyAgent > Settings::highestValidPlayerNumber)
+      {
+        // Assign positions based on robot number to ensure deterministic, conflict-free allocation
+        const int positionPriority = static_cast<int>(p->type);
+        for(const Agent* agent : remainingAgents)
+        {
+          // Calculate priority score: lower robot number + position preference
+          const int agentPriority = agent->number + (positionPriority * 10);
+          if(theOneAndOnlyAgent > Settings::highestValidPlayerNumber || 
+             agentPriority < (theOneAndOnlyAgent + (positionPriority * 10)))
+          {
+            theOneAndOnlyAgent = agent->number;
+          }
+        }
+      }
       Vector2f target = Vector2f(p->pose.translation.x(), mirror ? -p->pose.translation.y() : p->pose.translation.y());
       if(relativeToTeamBallMap[p->type])
       {
@@ -655,10 +696,19 @@ void Behavior::assignPositions(Tactic::Type tactic, SetPlay::Type setPlay, std::
         costMatrix(agentIndex, positionIndex) = (target - remainingAgents[agentIndex]->lastKnownPose.translation).norm();
         if(remainingAgents[agentIndex]->number == theOneAndOnlyAgent)
         {
-          if(dontChangePositions)
+          if(dontChangePositions || theGameState.state == GameState::standby)
             costMatrix(agentIndex, positionIndex) = std::numeric_limits<float>::lowest();
           else
             costMatrix(agentIndex, positionIndex) -= p->stabilityOffset;
+        }
+        
+        // Additional standby stability: prefer positions closer to robot number-based assignment
+        if(theGameState.state == GameState::standby)
+        {
+          const int robotNumber = remainingAgents[agentIndex]->number;
+          const int positionNumber = static_cast<int>(p->type);
+          const float numberBasedBonus = 500.0f / (1.0f + std::abs(robotNumber - positionNumber));
+          costMatrix(agentIndex, positionIndex) -= numberBasedBonus;
         }
       }
     }

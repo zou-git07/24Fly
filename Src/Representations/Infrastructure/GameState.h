@@ -433,6 +433,7 @@ STREAMABLE(GameState,
   (State)(beforeHalf) state, /**< The current state of the game. */
   (unsigned)(0) timeWhenStateStarted, /**< Time when the current state started. */
   (unsigned)(0) timeWhenStateEnds, /**< Time when the current state is expected to end. Only valid for some states! */
+  (bool)(false) paused, /**< Whether the game is paused (system-level freeze, not a game state). */
   (bool)(false) kickOffSetupFromTouchlines, /**< During a kick-off setup: Is it from the touchlines (i.e. start of half / after timeout as opposed to after a goal / global game stuck)? */
   (Team) ownTeam, /**< The state of the own team. */
   (Team) opponentTeam, /**< The state of the opponent team. */

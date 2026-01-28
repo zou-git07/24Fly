@@ -19,6 +19,7 @@ STREAMABLE(Tactic,
   ENUM(Type,
   {,
     none,
+    standby,  // Special tactic for standby state
     t123,
     t222,
     t033,

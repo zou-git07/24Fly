@@ -378,6 +378,8 @@ pub struct Game {
     /// A timer that counts down until the half is switched.
     #[serde(skip)]
     pub switch_half_timer: Timer,
+    /// Whether the game is paused (system-level freeze, not a game state).
+    pub is_paused: bool,
     /// The two competing teams.
     pub teams: EnumMap<Side, Team>,
 }

@@ -1,4 +1,5 @@
 import ActionButton from "./ActionButton";
+import PauseAllButton from "./PauseAllButton";
 import * as actions from "../../actions.js";
 
 const StatePanel = ({ game, params, legalGameActions }) => {
@@ -185,8 +186,20 @@ const StatePanel = ({ game, params, legalGameActions }) => {
     />
   );
 
+  // 暂停/恢复按钮 - 使用更显眼的样式
+  let pauseAllButton = (
+    <div className="col-span-5 mb-2">
+      <PauseAllButton
+        isPaused={game.isPaused || false}
+        legalPause={legalGameActions[actions.PAUSE]}
+        legalResume={legalGameActions[actions.RESUME]}
+      />
+    </div>
+  );
+
   return (
     <div className="grid grid-cols-5 gap-2">
+      {pauseAllButton}
       {secondHalfButton}
       {standbyButton}
       {penaltyShootoutButtons}

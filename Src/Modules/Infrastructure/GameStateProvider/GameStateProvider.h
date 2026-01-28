@@ -179,9 +179,10 @@ class GameStateProvider : public GameStateProviderBase
   /**
    * Extracts the B-Human game state from raw GameController data.
    * @param gameControllerData The data from the GameController.
+   * @param currentState The current game state (used when paused).
    * @return The corresponding B-Human game state.
    */
-  GameState::State convertGameControllerDataToState(const GameControllerData& gameControllerData);
+  GameState::State convertGameControllerDataToState(const GameControllerData& gameControllerData, const GameState& currentState);
 
   /**
    * Maps GameController penalty macro constants to B-Human enum constants.

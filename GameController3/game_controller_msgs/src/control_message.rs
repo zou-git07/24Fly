@@ -23,6 +23,9 @@ use crate::bindings::{
     TEAM_GRAY, TEAM_GREEN, TEAM_ORANGE, TEAM_PURPLE, TEAM_RED, TEAM_WHITE, TEAM_YELLOW,
 };
 
+// Temporary constant until bindings are regenerated
+const GAME_PHASE_PAUSED: u8 = 4;
+
 /// This struct corresponds to the `RobotInfo`.
 #[derive(Debug)]
 pub struct ControlMessagePlayer {
@@ -182,12 +185,16 @@ impl ControlMessage {
                 Some(ChallengeMode::MostPassesLeaderboard) => COMPETITION_TYPE_MOST_PASSES,
                 None => COMPETITION_TYPE_NORMAL,
             },
-            game_phase: match (game.phase, game.state) {
-                (_, State::Timeout) => GAME_PHASE_TIMEOUT,
-                (Phase::FirstHalf | Phase::SecondHalf, _) => GAME_PHASE_NORMAL,
-                (Phase::PenaltyShootout, _) => GAME_PHASE_PENALTYSHOOT,
+            game_phase: match (game.is_paused, game.phase, game.state) {
+                // If paused, always use GAME_PHASE_PAUSED regardless of other state
+                (true, _, _) => GAME_PHASE_PAUSED,
+                // Otherwise, use normal logic
+                (false, _, State::Timeout) => GAME_PHASE_TIMEOUT,
+                (false, Phase::FirstHalf | Phase::SecondHalf, _) => GAME_PHASE_NORMAL,
+                (false, Phase::PenaltyShootout, _) => GAME_PHASE_PENALTYSHOOT,
             },
             state: match game.state {
+                // When paused, keep the current state (don't change to INITIAL)
                 State::Initial | State::Timeout => STATE_INITIAL,
                 State::Ready => STATE_READY,
                 State::Set => STATE_SET,
