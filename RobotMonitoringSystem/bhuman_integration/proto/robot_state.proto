@@ -1,0 +1,126 @@
+// Protobuf 定义：机器人状态数据模型
+syntax = "proto3";
+
+package bhuman.monitoring;
+
+message RobotState {
+  // ===== 基础运行状态 (每帧上报) =====
+  message SystemStatus {
+    uint64 timestamp_ms = 1;        // 系统时间戳 (ms)
+    uint32 frame_number = 2;        // 帧计数器
+    uint32 cycle_time_ms = 3;       // 本帧耗时 (ms)
+    
+    float battery_charge = 4;       // 电量百分比 [0-100]
+    float battery_current = 5;      // 电流 (A)
+    float cpu_temperature = 6;      // CPU 温度 (°C)
+    
+    // 姿态 (IMU)
+    message Orientation {
+      float roll = 1;               // 横滚角 (rad)
+      float pitch = 2;              // 俯仰角 (rad)
+      float yaw = 3;                // 偏航角 (rad)
+    }
+    Orientation orientation = 7;
+    
+    bool is_upright = 8;            // 是否直立
+    bool is_fallen = 9;             // 是否摔倒
+  }
+  SystemStatus system = 1;
+  
+  // ===== 感知与决策状态 (每帧上报) =====
+  message PerceptionStatus {
+    // 球感知
+    message BallInfo {
+      bool visible = 1;             // 本帧是否看到球
+      float pos_x = 2;              // 相对位置 x (mm)
+      float pos_y = 3;              // 相对位置 y (mm)
+      uint64 last_seen_ms = 4;      // 上次看到的时间戳
+      float velocity_x = 5;         // 球速度 x (mm/s)
+      float velocity_y = 6;         // 球速度 y (mm/s)
+    }
+    BallInfo ball = 1;
+    
+    // 定位
+    message LocalizationInfo {
+      float pos_x = 1;              // 场地坐标 x (mm)
+      float pos_y = 2;              // 场地坐标 y (mm)
+      float rotation = 3;           // 朝向 (rad)
+      enum Quality {
+        POOR = 0;
+        OKAY = 1;
+        SUPERB = 2;
+      }
+      Quality quality = 4;
+    }
+    LocalizationInfo localization = 2;
+    
+    // 队友感知
+    repeated uint32 teammates_seen = 3;  // 看到的队友编号列表
+    
+    // 对手感知
+    uint32 opponents_count = 4;     // 看到的对手数量
+  }
+  PerceptionStatus perception = 2;
+  
+  message DecisionStatus {
+    // 比赛状态
+    enum GameState {
+      INITIAL = 0;
+      READY = 1;
+      SET = 2;
+      PLAYING = 3;
+      FINISHED = 4;
+    }
+    GameState game_state = 1;
+    
+    uint32 team_number = 2;
+    uint32 player_number = 3;
+    bool is_penalized = 4;
+    
+    // 角色
+    string role = 5;                // "striker", "supporter", "defender", etc.
+    
+    // 当前行为
+    string active_behavior = 6;     // "SearchForBall", "WalkToBall", etc.
+    
+    // 运动请求
+    enum MotionType {
+      STAND = 0;
+      WALK = 1;
+      KICK = 2;
+      GET_UP = 3;
+      SPECIAL = 4;
+    }
+    MotionType motion_type = 7;
+    
+    // 行走速度 (如果 motion_type == WALK)
+    float walk_speed_x = 8;         // mm/s
+    float walk_speed_y = 9;
+    float walk_speed_rot = 10;      // rad/s
+  }
+  DecisionStatus decision = 3;
+  
+  // ===== 事件型日志 (事件触发上报) =====
+  message Event {
+    enum EventType {
+      BEHAVIOR_CHANGED = 0;
+      ROLE_CHANGED = 1;
+      FALLEN = 2;
+      GOT_UP = 3;
+      BALL_LOST = 4;
+      BALL_FOUND = 5;
+      PENALIZED = 6;
+      UNPENALIZED = 7;
+      COMMUNICATION_ERROR = 8;
+      LOCALIZATION_LOST = 9;
+      KICK_EXECUTED = 10;
+    }
+    EventType type = 1;
+    string description = 2;         // 事件描述
+    uint64 timestamp_ms = 3;
+  }
+  repeated Event events = 4;        // 本帧发生的事件列表
+  
+  // ===== 元数据 =====
+  string robot_id = 5;              // 唯一标识: "team_player" (e.g., "bhuman_1")
+}

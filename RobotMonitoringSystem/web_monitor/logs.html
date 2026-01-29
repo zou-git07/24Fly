@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📊 机器人监控 - 日志</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>📊 机器人监控系统 - 比赛日志</h1>
+        <div class="status">
+            <a href="index.html" class="btn">🔴 实时监控</a>
+        </div>
+    </header>
+
+    <main>
+        <div class="controls">
+            <div class="control-group">
+                <label for="match-select">比赛：</label>
+                <select id="match-select">
+                    <option>加载中...</option>
+                </select>
+            </div>
+            
+            <div class="control-group">
+                <label for="robot-select">机器人：</label>
+                <select id="robot-select">
+                    <option>请先选择比赛</option>
+                </select>
+            </div>
+            
+            <button id="load-btn" class="btn">📥 加载数据</button>
+        </div>
+
+        <div id="log-info" class="log-info"></div>
+
+        <div id="timeline" class="timeline"></div>
+
+        <div id="events" class="events"></div>
+
+        <div class="raw-data-container">
+            <h3>📄 原始数据（最新 50 条）</h3>
+            <pre id="raw-data"></pre>
+        </div>
+    </main>
+
+    <footer>
+        <p>RoboCup SPL - 机器人监控系统</p>
+    </footer>
+
+    <script src="logs.js"></script>
+</body>
+</html>

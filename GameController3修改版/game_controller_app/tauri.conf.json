@@ -10,18 +10,7 @@
       ],
       "csp": "default-src 'self'"
     },
-    "windows": [
-      {
-        "title": "GameController",
-        "width": 1400,
-        "height": 900,
-        "minWidth": 1000,
-        "minHeight": 700,
-        "resizable": true,
-        "fullscreen": false,
-        "decorations": true
-      }
-    ]
+    "windows": []
   },
   "build": {
     "beforeBuildCommand": "npm run build",
