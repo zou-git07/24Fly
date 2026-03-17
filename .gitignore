@@ -25,6 +25,7 @@ GTAGS
 tags
 Thumbs.db
 /Build
+/build
 /Config/Images
 /Config/Scenes/Includes/connect.con
 /Config/Scenes/Includes/replay.con
