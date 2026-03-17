@@ -8850,7 +8850,7 @@ build Booster-prefix/src/Booster-stamp/Booster-update | ${cmake_ninja_workdir}Bo
 #############################################
 # Phony custom command for CMakeFiles/DeployDialog_autogen_timestamp_deps
 
-build CMakeFiles/DeployDialog_autogen_timestamp_deps | ${cmake_ninja_workdir}CMakeFiles/DeployDialog_autogen_timestamp_deps: phony /usr/lib/x86_64-linux-gnu/libQt6Core.so.6.4.2 /usr/lib/x86_64-linux-gnu/libQt6Widgets.so.6.4.2 /usr/lib/x86_64-linux-gnu/libQt6Concurrent.so.6.4.2 /usr/lib/qt6/libexec/moc /usr/lib/x86_64-linux-gnu/libQt6Gui.so.6.4.2 || MathBase Platform Streaming
+build CMakeFiles/DeployDialog_autogen_timestamp_deps | ${cmake_ninja_workdir}CMakeFiles/DeployDialog_autogen_timestamp_deps: phony /usr/lib/x86_64-linux-gnu/libQt6Core.so.6.4.2 /usr/lib/x86_64-linux-gnu/libQt6Gui.so.6.4.2 /usr/lib/x86_64-linux-gnu/libQt6Widgets.so.6.4.2 /usr/lib/qt6/libexec/moc /usr/lib/x86_64-linux-gnu/libQt6Concurrent.so.6.4.2 || MathBase Platform Streaming
 
 
 #############################################
@@ -8862,7 +8862,7 @@ build CMakeFiles/DeployDialog_autogen | ${cmake_ninja_workdir}CMakeFiles/DeployD
 #############################################
 # Phony custom command for CMakeFiles/SimRobot_autogen_timestamp_deps
 
-build CMakeFiles/SimRobot_autogen_timestamp_deps | ${cmake_ninja_workdir}CMakeFiles/SimRobot_autogen_timestamp_deps: phony /usr/lib/x86_64-linux-gnu/libQt6Core.so.6.4.2 /usr/lib/x86_64-linux-gnu/libQt6Widgets.so.6.4.2 /usr/lib/qt6/libexec/moc /usr/lib/x86_64-linux-gnu/libQt6Gui.so.6.4.2 /usr/lib/x86_64-linux-gnu/libQt6OpenGL.so.6.4.2 /usr/lib/x86_64-linux-gnu/libQt6Svg.so.6.4.2
+build CMakeFiles/SimRobot_autogen_timestamp_deps | ${cmake_ninja_workdir}CMakeFiles/SimRobot_autogen_timestamp_deps: phony /usr/lib/x86_64-linux-gnu/libQt6Core.so.6.4.2 /usr/lib/x86_64-linux-gnu/libQt6Gui.so.6.4.2 /usr/lib/x86_64-linux-gnu/libQt6Svg.so.6.4.2 /usr/lib/x86_64-linux-gnu/libQt6Widgets.so.6.4.2 /usr/lib/x86_64-linux-gnu/libQt6OpenGL.so.6.4.2 /usr/lib/qt6/libexec/moc
 
 
 #############################################
@@ -8874,7 +8874,7 @@ build CMakeFiles/SimRobot_autogen | ${cmake_ninja_workdir}CMakeFiles/SimRobot_au
 #############################################
 # Phony custom command for CMakeFiles/SimRobotCore3_autogen_timestamp_deps
 
-build CMakeFiles/SimRobotCore3_autogen_timestamp_deps | ${cmake_ninja_workdir}CMakeFiles/SimRobotCore3_autogen_timestamp_deps: phony /usr/lib/x86_64-linux-gnu/libQt6Core.so.6.4.2 /usr/lib/x86_64-linux-gnu/libQt6Widgets.so.6.4.2 /home/valery/Documents/MyBHuman/MyBuman/Util/SimRobot/Util/MuJoCo/Linux/lib/libmujoco.so.3.3.5 /usr/lib/qt6/libexec/moc /usr/lib/x86_64-linux-gnu/libQt6Gui.so.6.4.2 /usr/lib/x86_64-linux-gnu/libQt6OpenGLWidgets.so.6.4.2 /usr/lib/x86_64-linux-gnu/libQt6OpenGL.so.6.4.2 libSimRobotCommon.a || libSimRobotCommon.a
+build CMakeFiles/SimRobotCore3_autogen_timestamp_deps | ${cmake_ninja_workdir}CMakeFiles/SimRobotCore3_autogen_timestamp_deps: phony /usr/lib/x86_64-linux-gnu/libQt6Core.so.6.4.2 /usr/lib/x86_64-linux-gnu/libQt6Gui.so.6.4.2 /usr/lib/x86_64-linux-gnu/libQt6Widgets.so.6.4.2 libSimRobotCommon.a /usr/lib/x86_64-linux-gnu/libQt6OpenGL.so.6.4.2 /home/valery/Documents/MyBHuman/MyBuman/Util/SimRobot/Util/MuJoCo/Linux/lib/libmujoco.so.3.3.5 /usr/lib/qt6/libexec/moc /usr/lib/x86_64-linux-gnu/libQt6OpenGLWidgets.so.6.4.2 || libSimRobotCommon.a
 
 
 #############################################
@@ -8886,7 +8886,7 @@ build CMakeFiles/SimRobotCore3_autogen | ${cmake_ninja_workdir}CMakeFiles/SimRob
 #############################################
 # Phony custom command for CMakeFiles/SimRobotCore2D_autogen_timestamp_deps
 
-build CMakeFiles/SimRobotCore2D_autogen_timestamp_deps | ${cmake_ninja_workdir}CMakeFiles/SimRobotCore2D_autogen_timestamp_deps: phony /usr/lib/x86_64-linux-gnu/libQt6Core.so.6.4.2 /usr/lib/x86_64-linux-gnu/libQt6Widgets.so.6.4.2 /usr/lib/x86_64-linux-gnu/libbox2d.so.2.4.1 /usr/lib/qt6/libexec/moc /usr/lib/x86_64-linux-gnu/libQt6Gui.so.6.4.2 libSimRobotCommon.a /usr/lib/x86_64-linux-gnu/libQt6Svg.so.6.4.2 || libSimRobotCommon.a
+build CMakeFiles/SimRobotCore2D_autogen_timestamp_deps | ${cmake_ninja_workdir}CMakeFiles/SimRobotCore2D_autogen_timestamp_deps: phony /usr/lib/x86_64-linux-gnu/libQt6Core.so.6.4.2 /usr/lib/x86_64-linux-gnu/libQt6Gui.so.6.4.2 /usr/lib/x86_64-linux-gnu/libQt6Svg.so.6.4.2 /usr/lib/x86_64-linux-gnu/libQt6Widgets.so.6.4.2 libSimRobotCommon.a /usr/lib/x86_64-linux-gnu/libbox2d.so.2.4.1 /usr/lib/qt6/libexec/moc || libSimRobotCommon.a
 
 
 #############################################
@@ -8898,7 +8898,7 @@ build CMakeFiles/SimRobotCore2D_autogen | ${cmake_ninja_workdir}CMakeFiles/SimRo
 #############################################
 # Phony custom command for CMakeFiles/SimRobotEditor_autogen_timestamp_deps
 
-build CMakeFiles/SimRobotEditor_autogen_timestamp_deps | ${cmake_ninja_workdir}CMakeFiles/SimRobotEditor_autogen_timestamp_deps: phony /usr/lib/x86_64-linux-gnu/libQt6Core.so.6.4.2 /usr/lib/x86_64-linux-gnu/libQt6Widgets.so.6.4.2 /usr/lib/qt6/libexec/moc /usr/lib/x86_64-linux-gnu/libQt6Gui.so.6.4.2
+build CMakeFiles/SimRobotEditor_autogen_timestamp_deps | ${cmake_ninja_workdir}CMakeFiles/SimRobotEditor_autogen_timestamp_deps: phony /usr/lib/x86_64-linux-gnu/libQt6Core.so.6.4.2 /usr/lib/x86_64-linux-gnu/libQt6Gui.so.6.4.2 /usr/lib/x86_64-linux-gnu/libQt6Widgets.so.6.4.2 /usr/lib/qt6/libexec/moc
 
 
 #############################################
@@ -8910,7 +8910,7 @@ build CMakeFiles/SimRobotEditor_autogen | ${cmake_ninja_workdir}CMakeFiles/SimRo
 #############################################
 # Phony custom command for CMakeFiles/qtpropertybrowser_autogen_timestamp_deps
 
-build CMakeFiles/qtpropertybrowser_autogen_timestamp_deps | ${cmake_ninja_workdir}CMakeFiles/qtpropertybrowser_autogen_timestamp_deps: phony /usr/lib/x86_64-linux-gnu/libQt6Core.so.6.4.2 /usr/lib/x86_64-linux-gnu/libQt6Widgets.so.6.4.2 /usr/lib/qt6/libexec/moc /usr/lib/x86_64-linux-gnu/libQt6Gui.so.6.4.2
+build CMakeFiles/qtpropertybrowser_autogen_timestamp_deps | ${cmake_ninja_workdir}CMakeFiles/qtpropertybrowser_autogen_timestamp_deps: phony /usr/lib/x86_64-linux-gnu/libQt6Core.so.6.4.2 /usr/lib/x86_64-linux-gnu/libQt6Gui.so.6.4.2 /usr/lib/x86_64-linux-gnu/libQt6Widgets.so.6.4.2 /usr/lib/qt6/libexec/moc
 
 
 #############################################
@@ -8922,7 +8922,7 @@ build CMakeFiles/qtpropertybrowser_autogen | ${cmake_ninja_workdir}CMakeFiles/qt
 #############################################
 # Phony custom command for CMakeFiles/SimulatedNao_autogen_timestamp_deps
 
-build CMakeFiles/SimulatedNao_autogen_timestamp_deps | ${cmake_ninja_workdir}CMakeFiles/SimulatedNao_autogen_timestamp_deps: phony /usr/lib/x86_64-linux-gnu/libQt6Core.so.6.4.2 /usr/lib/x86_64-linux-gnu/libQt6Widgets.so.6.4.2 libqtpropertybrowser.a /usr/lib/qt6/libexec/moc /usr/lib/x86_64-linux-gnu/libQt6Gui.so.6.4.2 libasmjit.a /usr/lib/x86_64-linux-gnu/libQt6OpenGLWidgets.so.6.4.2 /usr/lib/x86_64-linux-gnu/libQt6SvgWidgets.so.6.4.2 /usr/lib/x86_64-linux-gnu/libQt6Svg.so.6.4.2 || B-Human Debugging Framework ImageProcessing LogPlayback Math MathBase Network OptionsAndSkills Platform RobotParts Streaming libCompiledNN.a libasmjit.a libqtpropertybrowser.a qtpropertybrowser_autogen qtpropertybrowser_autogen_timestamp_deps
+build CMakeFiles/SimulatedNao_autogen_timestamp_deps | ${cmake_ninja_workdir}CMakeFiles/SimulatedNao_autogen_timestamp_deps: phony /usr/lib/x86_64-linux-gnu/libQt6Core.so.6.4.2 /usr/lib/x86_64-linux-gnu/libQt6Gui.so.6.4.2 /usr/lib/x86_64-linux-gnu/libQt6SvgWidgets.so.6.4.2 /usr/lib/x86_64-linux-gnu/libQt6Svg.so.6.4.2 /usr/lib/x86_64-linux-gnu/libQt6Widgets.so.6.4.2 libqtpropertybrowser.a /usr/lib/qt6/libexec/moc /usr/lib/x86_64-linux-gnu/libQt6OpenGLWidgets.so.6.4.2 libasmjit.a || B-Human Debugging Framework ImageProcessing LogPlayback Math MathBase Network OptionsAndSkills Platform RobotParts Streaming libCompiledNN.a libasmjit.a libqtpropertybrowser.a qtpropertybrowser_autogen qtpropertybrowser_autogen_timestamp_deps
 
 
 #############################################
