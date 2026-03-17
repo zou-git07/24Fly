@@ -1,0 +1,34 @@
+{
+	"BUILD_DIR" : "/home/valery/Documents/MyBHuman/MyBuman/build/SimRobotCore3_autogen",
+	"CMAKE_BINARY_DIR" : "/home/valery/Documents/MyBHuman/MyBuman/build",
+	"CMAKE_CURRENT_BINARY_DIR" : "/home/valery/Documents/MyBHuman/MyBuman/build",
+	"CMAKE_CURRENT_SOURCE_DIR" : "/home/valery/Documents/MyBHuman/MyBuman/Make/CMake",
+	"CMAKE_SOURCE_DIR" : "/home/valery/Documents/MyBHuman/MyBuman/Make/CMake",
+	"GENERATOR" : "Ninja",
+	"INCLUDE_DIR" : "/home/valery/Documents/MyBHuman/MyBuman/build/SimRobotCore3_autogen/include",
+	"INPUTS" : 
+	[
+		"/home/valery/Documents/MyBHuman/MyBuman/Util/SimRobot/Src/SimRobotCore3/Icons/icons8-focal-length-50.png",
+		"/home/valery/Documents/MyBHuman/MyBuman/Util/SimRobot/Src/SimRobotCore3/Icons/icons8-slider-control-50.png",
+		"/home/valery/Documents/MyBHuman/MyBuman/Util/SimRobot/Src/SimRobotCore3/Icons/icons8-layers-50.png",
+		"/home/valery/Documents/MyBHuman/MyBuman/Util/SimRobot/Src/SimRobotCore3/Icons/icons8-coordinate-system-50.png",
+		"/home/valery/Documents/MyBHuman/MyBuman/Util/SimRobot/Src/SimRobotCore3/Icons/icons8-link-50.png",
+		"/home/valery/Documents/MyBHuman/MyBuman/Util/SimRobot/Src/SimRobotCore3/Icons/icons8-engine-50.png",
+		"/home/valery/Documents/MyBHuman/MyBuman/Util/SimRobot/Src/SimRobotCore3/Icons/icons8-speed-50.png",
+		"/home/valery/Documents/MyBHuman/MyBuman/Util/SimRobot/Src/SimRobotCore3/Icons/icons8-line-chart-50.png",
+		"/home/valery/Documents/MyBHuman/MyBuman/Util/SimRobot/Src/SimRobotCore3/Icons/icons8-camera-50.png",
+		"/home/valery/Documents/MyBHuman/MyBuman/Util/SimRobot/Src/SimRobotCore3/Icons/icons8-octaedro-50.png",
+		"/home/valery/Documents/MyBHuman/MyBuman/Util/SimRobot/Src/SimRobotCore3/Icons/icons8-orthogonal-view-50.png",
+		"/home/valery/Documents/MyBHuman/MyBuman/Util/SimRobot/Src/SimRobotCore3/Icons/icons8-3d-model-50.png"
+	],
+	"LOCK_FILE" : "/home/valery/Documents/MyBHuman/MyBuman/build/CMakeFiles/SimRobotCore3_autogen.dir/AutoRcc_SimRobotCore3_F7DGW2E4EC_Lock.lock",
+	"MULTI_CONFIG" : false,
+	"OPTIONS" : [ "-name", "SimRobotCore3" ],
+	"OUTPUT_CHECKSUM" : "F7DGW2E4EC",
+	"OUTPUT_NAME" : "qrc_SimRobotCore3.cpp",
+	"RCC_EXECUTABLE" : "/usr/lib/qt6/libexec/rcc",
+	"RCC_LIST_OPTIONS" : [ "--list" ],
+	"SETTINGS_FILE" : "/home/valery/Documents/MyBHuman/MyBuman/build/CMakeFiles/SimRobotCore3_autogen.dir/AutoRcc_SimRobotCore3_F7DGW2E4EC_Used.txt",
+	"SOURCE" : "/home/valery/Documents/MyBHuman/MyBuman/Util/SimRobot/Src/SimRobotCore3/SimRobotCore3.qrc",
+	"VERBOSITY" : 0
+}

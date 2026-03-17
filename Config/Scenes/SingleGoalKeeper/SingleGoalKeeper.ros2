@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Simulation>
+  <!-- 包含必要的组件定义 -->
+  <Include href="../Includes/NaoV6H25.rsi2"/>
+  <Include href="../Includes/Ball.rsi2"/>
+  <Include href="../Includes/Field2020.rsi2"/>
+  <Include href="../Includes/GameController.rsi2"/>
+  
+  <Scene name="SingleGoalKeeper" controller="SimulatedNao" stepLength="0.012" color="rgb(65%, 65%, 70%)" ERP="0.2" CFM="0.01">
+    
+    <!-- 场地 -->
+    <Field/>
+    
+    <!-- 球的初始位置（场地中心） -->
+    <Ball name="ball" x="0" y="0"/>
+    
+    <!-- 守门员机器人 -->
+    <Robot name="GoalKeeper" 
+           playerNumber="1" 
+           teamNumber="1" 
+           teamColor="blue"
+           x="-4500" 
+           y="0" 
+           rotation="0"
+           scenario="SingleGoalKeeper">
+      
+      <!-- 机器人特定配置 -->
+      <Set name="NaoBody" value="NaoV6"/>
+      <Set name="NaoHead" value="NaoV6"/>
+      
+      <!-- 传感器配置 -->
+      <CameraSensor name="CameraTop" translation="0.05871 0 0.06364" 
+                    rotation="0 0.384 0" angleX="60.97deg" angleY="47.64deg"/>
+      <CameraSensor name="CameraBottom" translation="0.05071 0 0.01774" 
+                    rotation="0 0.69813 0" angleX="60.97deg" angleY="47.64deg"/>
+    </Robot>
+    
+    <!-- 可选：添加一些测试用的球或障碍物 -->
+    <Ball name="testBall1" x="1000" y="0"/>
+    <Ball name="testBall2" x="2000" y="1000"/>
+    
+  </Scene>
+</Simulation>

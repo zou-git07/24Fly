@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Include xmlns="http://www.b-human.de/rsi3">
+  
+  <GoalKeeperTemplate>
+    <!-- 守门员专用配置模板 -->
+    <DefaultBehavior>
+      <Skills>
+        <Skill name="positioning" priority="high"/>
+        <Skill name="ballCatching" priority="high"/>
+        <Skill name="jumping" priority="medium"/>
+        <Skill name="clearing" priority="low"/>
+      </Skills>
+    </DefaultBehavior>
+    
+    <PhysicalProperties>
+      <Mass value="5.2"/>
+      <Height value="573"/>
+      <StabilityThreshold value="0.1"/>
+    </PhysicalProperties>
+    
+    <VisualAppearance>
+      <JerseyColor primary="blue" secondary="white"/>
+      <Number display="1" size="large"/>
+    </VisualAppearance>
+    
+  </GoalKeeperTemplate>
+  
+</Include>

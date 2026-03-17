@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Simulation>
+  <!-- 守门员专用配置 -->
+  <GoalKeeperConfig>
+    <Set name="jumpingEnabled" value="true"/>
+    <Set name="catchingEnabled" value="true"/>
+    <Set name="penaltyAreaRestricted" value="true"/>
+  </GoalKeeperConfig>
+</Simulation>

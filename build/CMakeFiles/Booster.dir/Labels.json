@@ -1,0 +1,43 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/home/valery/Documents/MyBHuman/MyBuman/build/CMakeFiles/Booster"
+		},
+		{
+			"file" : "/home/valery/Documents/MyBHuman/MyBuman/build/CMakeFiles/Booster.rule"
+		},
+		{
+			"file" : "/home/valery/Documents/MyBHuman/MyBuman/build/CMakeFiles/Booster-complete.rule"
+		},
+		{
+			"file" : "/home/valery/Documents/MyBHuman/MyBuman/build/Booster-prefix/src/Booster-stamp/Booster-build.rule"
+		},
+		{
+			"file" : "/home/valery/Documents/MyBHuman/MyBuman/build/Booster-prefix/src/Booster-stamp/Booster-configure.rule"
+		},
+		{
+			"file" : "/home/valery/Documents/MyBHuman/MyBuman/build/Booster-prefix/src/Booster-stamp/Booster-download.rule"
+		},
+		{
+			"file" : "/home/valery/Documents/MyBHuman/MyBuman/build/Booster-prefix/src/Booster-stamp/Booster-install.rule"
+		},
+		{
+			"file" : "/home/valery/Documents/MyBHuman/MyBuman/build/Booster-prefix/src/Booster-stamp/Booster-mkdir.rule"
+		},
+		{
+			"file" : "/home/valery/Documents/MyBHuman/MyBuman/build/Booster-prefix/src/Booster-stamp/Booster-patch.rule"
+		},
+		{
+			"file" : "/home/valery/Documents/MyBHuman/MyBuman/build/Booster-prefix/src/Booster-stamp/Booster-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"Booster"
+		],
+		"name" : "Booster"
+	}
+}

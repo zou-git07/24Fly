@@ -1,0 +1,15 @@
+生成文件：
+文件夹Config/Scenes/SingleGoalKeeper/SingleGoalKeeper.ros2
+文件Config/Scenes/Includes/GoalKeeper.rsi2
+
+时间：2026.01.27
+操作员：Valery
+
+生成文件：
+Config/Scenes/generate_goalkeeper_ros3.sh
+Config/Scenes/generate_goalkeeper_scene.sh
+Config/Scenes/SingleGoalKeeper3.ros3
+Config/Scenes/Includes/GoalKeeper3.rsi3
+
+时间：2026.01.28
+操作员：Valery

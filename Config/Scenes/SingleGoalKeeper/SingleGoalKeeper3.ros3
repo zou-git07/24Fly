@@ -1,0 +1,80 @@
+<Scene name="SingleGoalKeeper" controller="SimulatedNao">
+  
+  <!-- 环境设置 -->
+  <Environment>
+    <Field type="SPL2020"/>
+    <Lighting ambient="0.5" diffuse="1.0" position="0,0,10000"/>
+    <Weather condition="clear" wind="0"/>
+  </Environment>
+  
+  <!-- 游戏对象 -->
+  <GameObjects>
+    <!-- 球的定义 -->
+    <Ball name="mainBall" 
+          position="0,0,32.5" 
+          velocity="0,0,0"
+          material="standard"/>
+    
+    <!-- 测试用球 -->
+    <Ball name="testBall1" position="1000,0,32.5"/>
+    <Ball name="testBall2" position="2000,1000,32.5"/>
+  </GameObjects>
+  
+  <!-- 机器人定义 -->
+  <Robots>
+    <Robot name="GoalKeeper" 
+           playerNumber="1" 
+           teamNumber="1" 
+           teamColor="blue"
+           bodyType="NaoV6"
+           headType="NaoV6">
+      
+      <!-- 初始位置和姿态 -->
+      <Pose position="-4500,0,320" rotation="0,0,0"/>
+      
+      <!-- 场景特定配置 -->
+      <ScenarioConfig scenario="SingleGoalKeeper"/>
+      
+      <!-- 传感器配置 -->
+      <Sensors>
+        <Camera name="upper" 
+                position="0.05871,0,0.06364" 
+                rotation="0,0.384,0"
+                resolution="640x480"
+                fov="60.97,47.64"/>
+        <Camera name="lower" 
+                position="0.05071,0,0.01774" 
+                rotation="0,0.69813,0"
+                resolution="640x480"
+                fov="60.97,47.64"/>
+        <IMU enabled="true" noise="0.01"/>
+        <FSR enabled="true" sensitivity="1.0"/>
+      </Sensors>
+      
+      <!-- 行为配置 -->
+      <Behavior>
+        <SkillSet>goalkeeper</SkillSet>
+        <Strategy>defensive</Strategy>
+        <Parameters>
+          <Parameter name="jumpingEnabled" value="true"/>
+          <Parameter name="catchingEnabled" value="true"/>
+          <Parameter name="penaltyAreaRestricted" value="true"/>
+        </Parameters>
+      </Behavior>
+      
+    </Robot>
+  </Robots>
+  
+  <!-- 观察者和摄像机 -->
+  <Observers>
+    <Camera name="FieldOverview" 
+            position="0,0,8000" 
+            rotation="90,0,0"
+            target="0,0,0"/>
+    <Camera name="GoalView" 
+            position="-5000,0,1000" 
+            rotation="0,0,0"
+            target="-4500,0,320"/>
+  </Observers>
+  
+</Scene>

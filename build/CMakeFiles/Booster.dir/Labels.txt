@@ -1,0 +1,13 @@
+# Target labels
+ Booster
+# Source files and their labels
+/home/valery/Documents/MyBHuman/MyBuman/build/CMakeFiles/Booster
+/home/valery/Documents/MyBHuman/MyBuman/build/CMakeFiles/Booster.rule
+/home/valery/Documents/MyBHuman/MyBuman/build/CMakeFiles/Booster-complete.rule
+/home/valery/Documents/MyBHuman/MyBuman/build/Booster-prefix/src/Booster-stamp/Booster-build.rule
+/home/valery/Documents/MyBHuman/MyBuman/build/Booster-prefix/src/Booster-stamp/Booster-configure.rule
+/home/valery/Documents/MyBHuman/MyBuman/build/Booster-prefix/src/Booster-stamp/Booster-download.rule
+/home/valery/Documents/MyBHuman/MyBuman/build/Booster-prefix/src/Booster-stamp/Booster-install.rule
+/home/valery/Documents/MyBHuman/MyBuman/build/Booster-prefix/src/Booster-stamp/Booster-mkdir.rule
+/home/valery/Documents/MyBHuman/MyBuman/build/Booster-prefix/src/Booster-stamp/Booster-patch.rule
+/home/valery/Documents/MyBHuman/MyBuman/build/Booster-prefix/src/Booster-stamp/Booster-update.rule
