@@ -69,13 +69,13 @@ option((SkillBehaviorControl) DirectKickOff,
             obstacleSectors.back().x += hysteresisNumber;
         }
         // Obstacle to avoid passing straight forward and running after the ball with the same Robot
-        if(!theIndirectKick.allowDirectKick)
-        {
-          obstacleSectors.emplace_back();
-          obstacleSectors.back().sector = Rangea(-35_deg, 35_deg);
-          obstacleSectors.back().distance = theFieldDimensions.centerCircleRadius;
-          obstacleSectors.back().x = theFieldDimensions.centerCircleRadius;
-        }
+        // if(!theIndirectKick.allowDirectKick)
+        // {
+        //   obstacleSectors.emplace_back();
+        //   obstacleSectors.back().sector = Rangea(-35_deg, 35_deg);
+        //   obstacleSectors.back().distance = theFieldDimensions.centerCircleRadius;
+        //   obstacleSectors.back().x = theFieldDimensions.centerCircleRadius;
+        // }
 
         // Sort obstacles according to their absolute x coordinate (to ease culling later on).
         std::sort(obstacleSectors.begin(), obstacleSectors.end(), [](const ObstacleSector& s1, const ObstacleSector& s2) { return s1.x < s2.x; });

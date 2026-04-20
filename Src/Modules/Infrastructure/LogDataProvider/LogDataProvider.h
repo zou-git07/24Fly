@@ -10,6 +10,7 @@
 #include "Representations/BehaviorControl/ActivationGraph.h"
 #include "Representations/BehaviorControl/AgentStates.h"
 #include "Representations/BehaviorControl/BehaviorStatus.h"
+#include "Representations/BehaviorControl/FieldInterceptBall.h"
 #include "Representations/BehaviorControl/IndirectKick.h"
 #include "Representations/BehaviorControl/SkillRequest.h"
 #include "Representations/BehaviorControl/StrategyStatus.h"
@@ -121,6 +122,7 @@ MODULE(LogDataProvider,
   PROVIDES(ECImage),
   PROVIDES(FallDownState),
   PROVIDES(FieldBoundary),
+  PROVIDES(FieldInterceptBall),
   PROVIDES(FieldLines),
   PROVIDES(FootSupport),
   PROVIDES(FrameInfo),
@@ -221,6 +223,7 @@ private:
   void update(ECImage&) override {}
   void update(FallDownState&) override {}
   void update(FieldBoundary&) override {}
+  void update(FieldInterceptBall&) override {}
   void update(FieldLines&) override {}
   void update(FootSupport&) override {}
   void update(FrameInfo&) override {}

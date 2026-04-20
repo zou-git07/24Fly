@@ -421,6 +421,7 @@ private:
   bool log(In&);
   bool moduleRequest(In&, std::string threadName);
   bool moveBall(In&);
+  bool kickBall(In&);
   bool moveRobot(In&);
   bool msg(In&);
   bool penalizeRobot(In&);

@@ -5,3 +5,5 @@ vfd tactics cognition:Reset
 vfd tactics fieldLines
 vfd tactics goalFrame
 vfd tactics behavior:Tactic:voronoiDiagram
+vfd tactics behavior:Goalkeeper:pose
+vfd tactics behavior:Goalkeeper:coverage

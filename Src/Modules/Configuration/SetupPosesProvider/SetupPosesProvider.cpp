@@ -35,6 +35,8 @@
  */
 
 #include "SetupPosesProvider.h"
+#include "Framework/Settings.h"
+#include <algorithm>
 
 SetupPosesProvider::SetupPosesProvider()
 {
@@ -68,8 +70,13 @@ bool SetupPosesProvider::updateRobotOrder()
   for(unsigned long i=0; i<theGameState.ownTeam.playerStates.size(); i++)
   {
     if(theGameState.ownTeam.playerStates[i] != GameState::substitute)
-      currentRobotOrder.push_back(static_cast<int>(i)+1);
+    {
+      const int playerNumber = static_cast<int>(i) + Settings::lowestValidPlayerNumber;
+      currentRobotOrder.push_back(playerNumber);
+    }
   }
+  // Sort by player number to ensure consistent ordering
+  std::sort(currentRobotOrder.begin(), currentRobotOrder.end());
   if(currentRobotOrder != robotOrderFromGC)
   {
     robotOrderFromGC = currentRobotOrder;

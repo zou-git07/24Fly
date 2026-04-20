@@ -185,6 +185,29 @@ Vector3f SimulatedRobot::getPosition3D(const SimRobot::Object* obj)
   return Vector3f(position[0], position[1], RoboCupCtrl::controller->is2D ? 0.f : position[2]) * 1000.f;
 }
 
+void SimulatedRobot::setBallVelocity(const Vector3f& velocity)
+{
+  if(!ball)
+    return;
+  Vector3f vel = velocity * 0.001f; // mm/s -> m/s
+  if(!RoboCupCtrl::controller->is2D)
+    static_cast<SimRobotCore3::Body*>(ball)->setVelocity(vel.data());
+}
+
+void SimulatedRobot::kickBallPerTeam(const Vector2f& target, float speed)
+{
+  Vector2f absTarget = firstTeam ? -target : target;
+  Vector2f ballPos;
+  if(!getAbsoluteBallPosition(ballPos))
+    return;
+  Vector2f direction = absTarget - ballPos;
+  const float distance = direction.norm();
+  if(distance < 1.f)
+    return;
+  direction /= distance;
+  setBallVelocity(Vector3f(direction.x() * speed, direction.y() * speed, 0.f));
+}
+
 void SimulatedRobot::applyBallFriction(float friction)
 {
   if(!RoboCupCtrl::controller->is2D || !ball)

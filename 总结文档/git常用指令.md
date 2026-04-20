@@ -15,9 +15,12 @@
     
 -   当前所在分支，以及它和远程分支的差异
 - 5：git init  					用来 **在一个文件夹里初始化一个新的 Git 仓库**
-- 6：git clone 存在文件丢失问题
+- 6：git clone --recursive （加recursive解决丢失问题）
+
+        存在文件丢失问题
 	   # 检查项目是否有子模块
 		cat .gitmodules  # 查看子模块配置
 		#如果文件存在，需要额外步骤：
 		git submodule init   # 初始化子模块
 		git submodule update --recursive  # 拉取所有子模块
+		

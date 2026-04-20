@@ -22,11 +22,17 @@ vid lower representation:PenaltyMarkPercept:image
 vfd worldState representation:GameState
 vfd worldState representation:GameState:ownTeam
 
-# deactivate game info provided in Cognition
-mr GameControllerData default
-mr GameState default
-
+# Let log mr configure GameControllerData and GameState from the log if available.
+# If Cognition data is missing from the log (e.g. JPEG buffer overflow),
+# the normal providers will handle them and gc commands below set PLAYING state
+# so that self-localization can actively update the robot pose.
 log mr
+
+# Transition game state to playing so self-localization runs during replay
+gc standby
+gc ready
+gc set
+gc playing
 
 # enable behavior graph
 dr representation:ActivationGraph

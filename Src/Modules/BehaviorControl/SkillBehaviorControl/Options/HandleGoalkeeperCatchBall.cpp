@@ -25,7 +25,7 @@ option((SkillBehaviorControl) HandleGoalkeeperCatchBall)
            theFieldBall.isRollingTowardsOwnGoal &&
            theFieldBall.positionRelative.squaredNorm() < sqr(3000.f)))
         goto notCatching;
-      if(state_time >= 100)
+      if(state_time >= 50)
         goto doingCatch;
     }
     action

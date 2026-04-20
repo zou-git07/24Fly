@@ -195,6 +195,7 @@ void GameStateProvider::update(GameState& gameState)
   }
 
   // State transitions that are triggered by the whistle:
+  // Note: waitFor* states always check whistle regardless of GameController status (modified for China competition rules)
   if(!gameState.gameControllerActive || !theGameControllerData.isTrueData)
   {
     switch(gameState.state)
@@ -244,52 +245,64 @@ void GameStateProvider::update(GameState& gameState)
           gameState.whistled = true;
         }
         break;
-      case GameState::waitForOwnKickOff:
-      case GameState::waitForOpponentKickOff:
-      case GameState::waitForDropBall:
-      case GameState::waitForOwnPenaltyKick:
-      case GameState::waitForOpponentPenaltyKick:
-      case GameState::waitForOwnPenaltyShot:
-      case GameState::waitForOpponentPenaltyShot:
-        if(checkForWhistle(minWhistleTimestamp, gameState.gameControllerActive))
-        {
-          // Remember start of previous state in case the whistle detection turns out to be wrong.
-          gameStateOverridden = true;
-          timeWhenStateStartedBeforeWhistle = gameState.timeWhenStateStarted;
-          timeWhenSwitchedToPlayingViaWhistle = theFrameInfo.time;
-          minWhistleTimestamp = theFrameInfo.time;
-          switch(gameState.state)
-          {
-            case GameState::waitForOwnKickOff:
-              gameState.state = GameState::ownKickOff;
-              break;
-            case GameState::waitForOpponentKickOff:
-              gameState.state = GameState::opponentKickOff;
-              break;
-            case GameState::waitForDropBall:
-              gameState.state = GameState::playing;
-              break;
-            case GameState::waitForOwnPenaltyKick:
-              gameState.state = GameState::ownPenaltyKick;
-              break;
-            case GameState::waitForOpponentPenaltyKick:
-              gameState.state = GameState::opponentPenaltyKick;
-              break;
-            case GameState::waitForOwnPenaltyShot:
-              gameState.state = GameState::ownPenaltyShot;
-              break;
-            case GameState::waitForOpponentPenaltyShot:
-              gameState.state = GameState::opponentPenaltyShot;
-              break;
-          }
-          gameState.timeWhenStateStarted = theFrameInfo.time;
-          gameState.timeWhenStateEnds = gameState.timeWhenStateStarted +
-                                        (gameState.isKickOff() ? kickOffDuration
-                                         : gameState.isPenaltyKick() ? penaltyKickDuration : 0);
-          gameState.whistled = true;
-        }
+      default:
         break;
     }
+  }
+
+  // Whistle detection for waitFor* states - always active regardless of GameController status
+  // This allows both whistle and GameController to trigger the transition to playing
+  switch(gameState.state)
+  {
+    case GameState::waitForOwnKickOff:
+    case GameState::waitForOpponentKickOff:
+    case GameState::waitForDropBall:
+    case GameState::waitForOwnPenaltyKick:
+    case GameState::waitForOpponentPenaltyKick:
+    case GameState::waitForOwnPenaltyShot:
+    case GameState::waitForOpponentPenaltyShot:
+      if(checkForWhistle(minWhistleTimestamp, gameState.gameControllerActive))
+      {
+        // Remember start of previous state in case the whistle detection turns out to be wrong.
+        gameStateOverridden = true;
+        timeWhenStateStartedBeforeWhistle = gameState.timeWhenStateStarted;
+        timeWhenSwitchedToPlayingViaWhistle = theFrameInfo.time;
+        minWhistleTimestamp = theFrameInfo.time;
+        switch(gameState.state)
+        {
+          case GameState::waitForOwnKickOff:
+            gameState.state = GameState::ownKickOff;
+            break;
+          case GameState::waitForOpponentKickOff:
+            gameState.state = GameState::opponentKickOff;
+            break;
+          case GameState::waitForDropBall:
+            gameState.state = GameState::playing;
+            break;
+          case GameState::waitForOwnPenaltyKick:
+            gameState.state = GameState::ownPenaltyKick;
+            break;
+          case GameState::waitForOpponentPenaltyKick:
+            gameState.state = GameState::opponentPenaltyKick;
+            break;
+          case GameState::waitForOwnPenaltyShot:
+            gameState.state = GameState::ownPenaltyShot;
+            break;
+          case GameState::waitForOpponentPenaltyShot:
+            gameState.state = GameState::opponentPenaltyShot;
+            break;
+          default:
+            break;
+        }
+        gameState.timeWhenStateStarted = theFrameInfo.time;
+        gameState.timeWhenStateEnds = gameState.timeWhenStateStarted +
+                                      (gameState.isKickOff() ? kickOffDuration
+                                       : gameState.isPenaltyKick() ? penaltyKickDuration : 0);
+        gameState.whistled = true;
+      }
+      break;
+    default:
+      break;
   }
 
   // Transition from Standby to Ready

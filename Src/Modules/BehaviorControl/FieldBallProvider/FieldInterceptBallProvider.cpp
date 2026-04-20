@@ -68,6 +68,25 @@ void FieldInterceptBallProvider::calculateInterceptedBallEndPosition(FieldInterc
   // TODO: Walking speed should be considered
   // Decide whether an intersection should be done.
 
+  // === SPQR-inspired velocity threat calculation for goalkeeper ===
+  theFieldInterceptBall.velocityRatio = 0.f;
+  theFieldInterceptBall.shouldActOnVelocityThreat = false;
+
+  {
+    const Vector2f& rawVelocity = theFieldBall.velocityRelative;
+    const float rawDistance = theFieldBall.positionRelative.norm();
+
+    if(rawVelocity.x() < 0.f && !theFieldBall.isRollingTowardsOpponentGoal)
+    {
+      const float ratio = rawVelocity.norm() / std::max(rawDistance, 1500.f);
+      theFieldInterceptBall.velocityRatio = ratio;
+
+      if(ratio > minVelocityRatioForThreat)
+        theFieldInterceptBall.shouldActOnVelocityThreat = true;
+    }
+  }
+  // === End velocity threat calculation ===
+
   // Interpolate between the normal ball estimate and the risky estimate
   const float ballDistance = theFieldBall.positionRelative.norm();
   Vector2f ballPosition = theFieldBall.positionRelative;

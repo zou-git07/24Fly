@@ -858,6 +858,7 @@ void ConsoleRoboCupCtrl::help(In& stream)
   list("  msg off | on | log <file> | enable | disable : Switch output of text messages on or off. Log text messages to a file. Switch message handling on or off.", pattern, true);
   list("  mv <x> <y> <z> [<rotX> <rotY> <rotZ>] : Move the selected simulated robot to the given position.", pattern, true);
   list("  mvb <x> <y> <z> : Move the ball to the given position.", pattern, true);
+  list("  kiba <target_x> <target_y> <speed> : Kick the ball towards a target position at given speed (mm/s).", pattern, true);
   list("  poll : Poll for all available debug requests and drawings. ", pattern, true);
   list("  pr none | illegalBallContact | playerPushing | foul | penaltyKick | illegalMotionInSet | inactivePlayer | illegalPosition | leavingTheField | requestForPickup | localGameStuck | illegalPositionInSet | playerStance | substitute | manual : Set robot penalty.", pattern, true);
   list("  rc ( local <team number> | remote <team number> <broadcast> ) : Start connection to remote-control a robot.", pattern, true);
@@ -1104,6 +1105,7 @@ void ConsoleRoboCupCtrl::createCompletion()
     "msg disable",
     "mv",
     "mvb",
+    "kiba",
     "mvo",
     "poll",
     "rc local",

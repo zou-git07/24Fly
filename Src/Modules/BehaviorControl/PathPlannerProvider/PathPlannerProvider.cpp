@@ -125,7 +125,7 @@ void PathPlannerProvider::update(PathPlanner& pathPlanner)
       if(theFrameInfo.getTimeSince(timeWhenLastPlayedSound) > 5000)
       {
         ANNOTATION("PathPlannerProvider", "No path to target");
-        SystemCall::playSound("theValidityDuck.wav");
+        // SystemCall::playSound("theValidityDuck.wav");  // 注释掉鸭子叫声，仅保留日志记录
         timeWhenLastPlayedSound = theFrameInfo.time;
       }
     }

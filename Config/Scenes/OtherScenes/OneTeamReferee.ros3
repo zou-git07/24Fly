@@ -1,7 +1,7 @@
 <Simulation>
 
   <Include href="../Includes/NaoV6H25.rsi3"/>
-  <Include href="../Includes/7vsDummies.rsi3"/>
+  <Include href="../Includes/5vs5.rsi3"/>
   <Include href="../Includes/Ball2016SPL.rsi3"/>
   <Include href="../Includes/Field2020SPL.rsi3"/>
   <Include href="../Includes/Crowd.rsi3"/>
@@ -13,7 +13,8 @@
     <Compound ref="teams"/>
 
     <Compound ref="robots"/>
-    <Compound ref="extras"/>
+    <!-- 5vs5.rsi3 does not define an "extras" compound. Keep it as an empty group for compatibility. -->
+    <Compound name="extras"/>
 
     <Compound name="balls">
       <Body ref="ball">

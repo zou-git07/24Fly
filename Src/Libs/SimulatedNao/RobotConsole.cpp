@@ -360,6 +360,10 @@ bool RobotConsole::handleConsoleLine(const std::string& line)
   {
     result = moveBall(stream);
   }
+  else if(command == "kiba")
+  {
+    result = kickBall(stream);
+  }
   else if(command == "poll")
   {
     PREREQUISITE(idModuleTable);
@@ -2083,6 +2087,16 @@ bool RobotConsole::moveBall(In& stream)
   Vector3f movePos;
   stream >> movePos.x() >> movePos.y() >> movePos.z();
   simulatedRobot->moveBallPerTeam(movePos);
+  return true;
+}
+
+bool RobotConsole::kickBall(In& stream)
+{
+  if(!simulatedRobot)
+    return true;
+  float targetX, targetY, speed;
+  stream >> targetX >> targetY >> speed;
+  simulatedRobot->kickBallPerTeam(Vector2f(targetX, targetY), speed);
   return true;
 }
 

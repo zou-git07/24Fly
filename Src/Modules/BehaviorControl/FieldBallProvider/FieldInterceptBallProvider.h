@@ -41,6 +41,7 @@ MODULE(FieldInterceptBallProvider,
     (Rangef) ballEndPositionX, /**< Ball needs to end beyond this value. Min is for starting intercepting, Max is for ending intercepting. */
     (Rangef) ballEndPositionY, /**< Ball needs to end beyond this value. Min is for starting intercepting, Max is for ending intercepting. */
     (Rangei) ballSeenTime, /**< if the ball was not seen recently, do not intercept. */
+    (float) minVelocityRatioForThreat, /**< Minimum velocity/distance ratio for goalkeeper threat (SPQR: 0.5) */
   }),
 });
 

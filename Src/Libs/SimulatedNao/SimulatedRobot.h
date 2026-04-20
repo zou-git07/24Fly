@@ -223,6 +223,19 @@ public:
   static Vector3f getPosition3D(const SimRobot::Object* obj);
 
   /**
+   * Sets the velocity of the ball
+   * @param velocity The velocity in mm/s (absolute coordinates)
+   */
+  static void setBallVelocity(const Vector3f& velocity);
+
+  /**
+   * Kicks the ball towards a target position (in team coordinates) at a given speed
+   * @param target The target position in team coordinates (mm)
+   * @param speed The ball speed in mm/s
+   */
+  void kickBallPerTeam(const Vector2f& target, float speed);
+
+  /**
    * Applies rolling friction to the ball (if the simulation core does not do it).
    * @param friction The negative acceleration of the ball (m/s^2).
    */

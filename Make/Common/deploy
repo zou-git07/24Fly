@@ -67,7 +67,7 @@ copy()
 
   if [ ! -z $DELETELOGS ]; then
     echo "removing log files"
-    ssh $SSHOPTIONS $TARGET_USER@$REMOTE "rm -f /home/$TARGET_USER/logs/* > /dev/null"
+    ssh $SSHOPTIONS $TARGET_USER@$REMOTE "rm -rf /home/$TARGET_USER/logs/* > /dev/null"
   fi
 
   echo "updating wireless profiles"

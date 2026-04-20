@@ -26,4 +26,6 @@ STREAMABLE(FieldInterceptBall,
   (bool)(false) interceptBall,                                            /**< If the rolling ball can be intercepted */
   (bool)(false) predictedInterceptBall,                                   /**< The ball will not intercept with us, but it is predicted it will happen. */
   (unsigned int)(0) lastInterceptBall,
+  (float)(0.f) velocityRatio,                                             /**< Ball speed / max(ball distance, 1500mm), SPQR-style threat metric */
+  (bool)(false) shouldActOnVelocityThreat,                                /**< True if ball poses an immediate velocity threat to the goalkeeper */
 });
